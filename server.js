@@ -1,6 +1,8 @@
-const app = require('./app')
+// const app = require('./app')
  
-
+const {ApolloServer} = require('apollo-server');
+const typeDefs = require('./schema/typeDefs');
+const resolvers = require('./schema/resolvers');
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
     console.log(`Error: ${err.message}`);
@@ -10,14 +12,16 @@ process.on("uncaughtException", (err) => {
 
 // Config
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "backend/config/config.env" });
+  require("dotenv").config({ path: "config/config.env" });
 }
 
+
+const server = new ApolloServer({typeDefs,resolvers})
  
   
 
 // server code
-app.listen(process.env.PORT,()=>{
+server.listen(process.env.PORT,()=>{
     console.log(`server is runing at ${process.env.PORT}`);
 })
 
