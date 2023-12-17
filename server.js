@@ -1,8 +1,8 @@
 // const app = require('./app')
  
 const {ApolloServer} = require('apollo-server');
-const typeDefs = require('./schema/typeDefs');
-const resolvers = require('./schema/resolvers');
+const {typeDefs} = require('./schema/typeDefs');
+const {resolvers} = require('./schema/resolvers');
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
     console.log(`Error: ${err.message}`);
@@ -21,8 +21,8 @@ const server = new ApolloServer({typeDefs,resolvers})
   
 
 // server code
-server.listen(process.env.PORT,()=>{
-    console.log(`server is runing at ${process.env.PORT}`);
+server.listen().then(({url})=>{
+  console.log(`server is runing at ${url}`);
 })
 
- 
+  

@@ -1,7 +1,6 @@
 const express = require('express')
 const error = require('./middleware/error')
 const connectTODatabase = require('./config/dataBase')
-const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const cors  = require("cors")
 const app = express()
@@ -14,7 +13,6 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 app.use(cors())
 app.use(express.json())
-app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended:true}))
 
  
